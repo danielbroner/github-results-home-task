@@ -36,7 +36,7 @@ public class GithubStepDefinitions {
 
             for (int c = 1; c <= 10 && c <= (numberOfResults + 1 - i); c++) {
                 githubResultItemPage = new GithubResultItemPage(c);
-                allItems.add(githubResultItemPage.getItemDataAsJson(allItems.size() + 1));
+                allItems.add(githubResultItemPage.getItemData());
             }
 
             if(allItems.size() < numberOfResults) {

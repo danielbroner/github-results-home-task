@@ -14,16 +14,20 @@ public class Main {
     public static void main(String[] args) {
 
         String directoryPath = getProgramPath();
-        String jsonResultsDirectoryPath = directoryPath + "\\results_"+ new SimpleDateFormat("yyyy-MM-dd-HH-ss")
-                .format(new Date());
-        String jsonFilePath =  directoryPath + "\\SecReposSearchResults.Json";
+        String time = new SimpleDateFormat("yyyy-MM-dd-HH").format(new Date());
+        String jsonResultsDirectoryPath = directoryPath + "\\results_" + time;
+        String jsonFilePath =  directoryPath + "\\SecurityResultGitHub-" + time + ".Json";
 
+        // Gets all Security repositories from Git-Hub and saves to a Json file
         new ReposBrowser().browseSecRepos(jsonFilePath);
+
+        // Splits all search results to different Json files in parallel
         new FileHandler(jsonResultsDirectoryPath).handle(jsonFilePath);
 
         System.out.println("Results saved to path: " + jsonResultsDirectoryPath);
     }
 
+    // Gets the parent path of the code source
     private static String getProgramPath()
     {
         URL url = JsonUtil.class.getProtectionDomain().getCodeSource().getLocation();

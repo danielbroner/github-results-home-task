@@ -66,7 +66,7 @@ public class GithubResultItemPage {
     }
 
 
-    public RepoExtendedResult getItemDataAsJson(int index) {
+    public RepoExtendedResult getItemData() {
 
         RepoExtendedResult item = new RepoExtendedResult();
 
@@ -76,7 +76,6 @@ public class GithubResultItemPage {
         item.time = this.time;
         item.language = this.language;
         item.stars = this.stars;
-        item.index = index;
 
         return item;
     }

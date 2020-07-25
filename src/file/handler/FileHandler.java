@@ -24,12 +24,13 @@ public class FileHandler {
     public void handle(String pathToJsonFile) {
 
         ReposSearchResult searchResults = JsonUtil.loadFromJson(pathToJsonFile);
-        searchResults.results.parallelStream().forEach(res -> SaveResultToFile(res));
+        searchResults.results.parallelStream().forEach(res ->
+                SaveResultToFile(res, searchResults.results.indexOf(res) + 1));
     }
 
-    public void SaveResultToFile(RepoExtendedResult res) {
+    public void SaveResultToFile(RepoExtendedResult res, int index) {
         String fileTimeAsString = new SimpleDateFormat("yyyy-MM-dd-HH-ss").format(new Date());
-        String fileName = "SecurityResultGitHub_" + res.index + "_" + fileTimeAsString + ".json";
+        String fileName = "SecurityResultGitHub-" + index + "-" + fileTimeAsString + ".json";
         String jsonFilePath = resultsFolderPath + "/" + fileName;
 
         RepoResult rep = new RepoResult();
